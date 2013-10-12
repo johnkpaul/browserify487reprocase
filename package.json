@@ -1,0 +1,16 @@
+{
+  "name": "repro",
+  "version": "0.0.0",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "node build"
+  },
+  "dependencies": {
+    "browserify": "~2.32.4",
+    "browserify-shim": "~2.0.8",
+    "moment": "~2.2.1"
+  },
+  "devDependencies": {
+    "bower": "~1.2.6"
+  }
+}
