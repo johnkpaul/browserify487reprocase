@@ -1,11 +1,10 @@
 'use strict';
 
-var fs = require('fs');
-var cp = require('child_process');
 var path = require('path');
 var browserify = require('browserify');
 var shim = require('browserify-shim');
 
+var go = module.exports = function build() {
     var b = shim(browserify({
     }), {
       jquery: {
@@ -41,13 +40,10 @@ var shim = require('browserify-shim');
     })
     .require(require.resolve('./src/main.js'), {entry: true});
 
-    b.bundle({debug: true}, postBundle);
+    return b.bundle({debug: true});
+}
 
-    function postBundle(err, src){
-      if(err) {
-        console.log(err);
-      }
-      fs.writeFileSync('out.js', src);
-      cp.exec('open index.html');
-    }
-
+// Test
+if (!module.parent) {
+  go().pipe(process.stdout);  
+}
